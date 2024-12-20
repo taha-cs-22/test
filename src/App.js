@@ -1,4 +1,3 @@
-import Verify from './pages/Verify.js';
 import React, { useState } from "react";
 import Navbar from "./components/navbar/Navbar";
 import { Route, Routes } from "react-router-dom";
@@ -21,7 +20,6 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/order" element={<PlaceOrder />} />
-          <Route path='/verify' element={<Verify/>}/>
         </Routes>
       </div>
       <Footer />
