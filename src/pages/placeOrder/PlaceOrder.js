@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import "./PlaceOrder.css";
 import { StoreContext } from "../../context/StoreContext";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const PlaceOrder = () => {
 
@@ -48,6 +49,16 @@ const PlaceOrder = () => {
     }
   }
 
+  const navigate =useNavigate();
+  useEffect(() => {
+    if(!token){
+      navigate("/cart")
+    }
+    else if(getTotalCartAmount()===0){
+      navigate("/cart")
+    }
+  }, [token])
+
   return (
     <form onSubmit={placeOrder} className="place-order">
       <div className="place-order-left">
@@ -56,7 +67,7 @@ const PlaceOrder = () => {
           <input required name='firstName' onChange={onChangeHandler} value={data.firstName} type="text" placeholder="First Name" />
           <input required name='lastName' onChange={onChangeHandler} vale={data.lastName} type="text" placeholder="Last Name" />
         </div>
-        <input required name='email' onChange={onChangeHandler} vale={data.email} type="email" placeholder="Email address" />
+        <input required name='email' onChange={onChangeHandler} value={data.email} type="email" placeholder="Email address" />
         <input required name='street' onChange={onChangeHandler} value={data.street} type="text" placeholder="Street" />
         <div className="multi-fields">
           <input required name='city' onChange={onChangeHandler} value={data.city} type="text" placeholder="City" />
